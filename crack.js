@@ -14,27 +14,28 @@ function(context,args) { // target:#s.some.npc
   var triad_1=["cyan", "green", "lime", "yellow", "orange", "red", "purple", "blue"]
   var triad_2=["lime", "yellow", "orange", "red", "purple", "blue", "cyan", "green"]
   c()
+  if (f.includes("Please disconnect immediately.")) l_num=1
   while(true) {
     if(l=="Connection terminated.")return {ok:true, "msg":g}
     if(l.includes('EZ_21')) {
-      #D("ez_21")
+
       for(var i=0;i<EZ.length;++i) {
         g["ez_21"]=EZ[i]
         c()
         if(!lib.is_def(f) || !f.includes('LOCK_ERROR')){
-          #D("unlock")
+
           l_num = l_num + 1
           break
         }
       }
     }
     if(l.includes('EZ_35')) {
-      #D("ez_35")
+
       for(var i=0;i<EZ.length;++i) {
         g["ez_35"]=EZ[i]
         c()
         if(l.includes('unlock parameter')){
-          #D("unlock")
+
           break;
         }
       }
@@ -42,19 +43,19 @@ function(context,args) { // target:#s.some.npc
         g["digit"]=i;
         c()
         if(!lib.is_def(f) || !f.includes("LOCK_ERROR")){
-          #D("digit")
+
           l_num = l_num + 1
           break;
         }
       }
     }
     if(l.includes('EZ_40')) {
-      #D("ez_40")
+
       for(var i=0;i<EZ.length;++i) {
         g["ez_40"]=EZ[i]
         c()
         if(l.includes('unlock parameter')){
-          #D("unlock")
+
           break;
         }
       }
@@ -62,55 +63,56 @@ function(context,args) { // target:#s.some.npc
         g["ez_prime"]=prime[i];
         c()
         if(!lib.is_def(f) || !f.includes("LOCK_ERROR")){
-          #D("prime")
+
           l_num = l_num + 1
           break;
         }
       }
     }
     if(l.includes('c001')){
-      #D("c001")
+
       for (var i=0;i<colors.length;i++){
         g["c001"]=colors[i];
         g["color_digit"]=colors[i].length
         c()
         if(!lib.is_def(f) || !f.includes("LOCK_ERROR")){
-          #D("cracked")
+
           l_num = l_num + 1
           break;
         }
       }
     }
     if (l.includes('c002')){
-      #D("c002")
+
       for (var i=0;i<colors.length;i++){
         g["c002"]=colors[i]
         g["c002_complement"]=complimentary[i]
         c()
         if(!lib.is_def(f) || !f.includes("LOCK_ERROR")){
-          #D("cracked")
+
+
           l_num = l_num + 1
           break;
         }
       }
     }
     if (l.includes('c003')){
-      #D("c003")
+
       for (var i=0;i<colors.length;i++){
         g["c003"]=colors[i]
         g["c003_triad_1"]=triad_1[i]
         g["c003_triad_2"]=triad_2[i]
         c()
         if(!lib.is_def(f) || !f.includes("LOCK_ERROR")){
-          #D("cracked")
+
           l_num = l_num + 1
           break;
         }
       }
     }
     if(l.includes('l0cket')){
-      #D("l0cket")
-      return lib.not_impl()
+
+      return {ok:false, "msg":"Not implemented. Here's what we have: "+JSON.stringify(g)}
     }
   }
 }
